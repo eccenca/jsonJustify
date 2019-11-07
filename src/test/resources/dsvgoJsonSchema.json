@@ -1,0 +1,114 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mindset.wifa.uni-leipzig.de/dsvgo/schema.json",
+  "type": "object",
+  "title": "The DSVGO Annotation Root Schema",
+  "required": [
+    "@id",
+    "@vers",
+    "datasetName",
+    "dsvgoRelevant",
+    "dsvgoAttribute",
+    "dsvgoZeitpunkt"
+  ],
+  "properties": {
+    "@id": {
+      "$id": "#/properties/@id",
+      "type": "string",
+      "title": "The @id Schema",
+      "default": "",
+      "examples": [
+        "datasetid"
+      ],
+      "pattern": "[a-zA-Z0-9_-]+"
+    },
+    "@vers": {
+      "$id": "#/properties/@vers",
+      "type": "string",
+      "title": "The @vers Schema",
+      "default": "",
+      "examples": [
+        "20191108"
+      ],
+      "pattern": "[a-zA-Z0-9_-]+"
+    },
+    "@prev": {
+      "$id": "#/properties/@prev",
+      "type": "string",
+      "title": "The @prev Schema",
+      "default": "",
+      "examples": [
+        "20191101"
+      ],
+      "pattern": "[a-zA-Z0-9_-]+"
+    },
+    "datasetName": {
+      "$id": "#/properties/datasetName",
+      "type": "string",
+      "title": "The Datasetname Schema",
+      "default": "",
+      "examples": [
+        "Name of Dataset"
+      ]
+    },
+    "dsvgoRelevant": {
+      "$id": "#/properties/dsvgoRelevant",
+      "type": "boolean",
+      "title": "The Dsvgorelevant Schema",
+      "default": false
+    },
+    "dsvgoAttribute": {
+      "$id": "#/properties/dsvgoAttribute",
+      "type": "object",
+      "title": "The Dsvgoattribute Schema",
+      "additionalProperties": {
+        "$id": "#/properties/dsvgoAttribute/properties",
+        "type": "object",
+        "title": "Attributannotations Schema",
+        "default": null,
+        "required": [
+          "dsgvoPersonenbezug",
+          "dsvgoEntstellt"
+        ],
+        "properties": {
+          "dsgvoPersonenbezug": {
+            "$id": "#/properties/dsvgoAttribute/properties/dsgvoPersonenbezug",
+            "type": "string",
+            "title": "The Dsgvopersonenbezug Schema",
+            "default": "",
+            "examples": [
+              "personenbeziehbar"
+            ],
+            "enum": [ "personenbeziehbar", "personenbezogen", "none" ]
+          },
+          "dsvgoEntstellt": {
+            "$id": "#/properties/dsvgoAttribute/properties/dsvgoEntstellt",
+            "type": "string",
+            "title": "The Dsvgoentstellt Schema",
+            "default": "",
+            "examples": [
+              "pseudonymisiert"
+            ],
+            "enum": [ "pseudonymisiert", "annonymisiert", "none" ]
+          },
+          "dsvgoAnmerkung": {
+            "$id": "#/properties/dsvgoAttribute/properties/dsvgoAnmerkung",
+            "type": "string",
+            "title": "The Dsvgoanmerkung Schema",
+            "default": ""
+          }
+        }
+      }
+    },
+    "dsvgoZeitpunkt": {
+      "$id": "#/properties/dsvgoZeitpunkt",
+      "type": "number",
+      "title": "The Dsvgozeitpunkt Schema",
+      "default": 0,
+      "examples": [
+        45678765435678
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "@id": "datasetid",
+  "@vers": "2019.11.08",
+  "@prev": "2019.11.01",
+  "datasetName": "Name of Dataset",
+  "dsvgoRelevant": true,
+  "dsvgoAttribute": {
+    "attrName1": {
+      "dsgvoPersonenbezug": "personenbeziehbar",
+      "dsvgoEntstellt": "pseudonymisiert",
+      "dsvgoAnmerkung": "Eine weitere Anmerkung."
+    },
+    "attrName2": {
+      "dsgvoPersonenbezug": "personenbezogen",
+      "dsvgoEntstellt": "annonymisiert",
+      "dsvgoAnmerkung": "Eine weitere Anmerkung."
+    },
+    "attrName3": {
+      "dsgvoPersonenbezug": "none",
+      "dsvgoEntstellt": "none",
+      "dsvgoAnmerkung": ""
+    }
+  },
+  "dsvgoZeitpunkt": 45678765435678
+}
