@@ -1,22 +1,22 @@
 {
   "@id": "datasetid",
   "datasetName": "Name of Dataset",
-  "dsvgoAttribute": {
+  "dsgvoAttribute": {
     "attrName1": {
       "dsgvoPersonenbezug": "personenbeziehbar",
-      "dsvgoEntstellt": "pseudonymisiert",
-      "dsvgoAnmerkung": "Eine weitere Anmerkung."
+      "dsgvoEntstellt": "pseudonymisiert",
+      "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName2": {
       "dsgvoPersonenbezug": "personenbezogen",
-      "dsvgoEntstellt": "annonymisiert",
-      "dsvgoAnmerkung": "Eine weitere Anmerkung."
+      "dsgvoEntstellt": "annonymisiert",
+      "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName3": {
       "dsgvoPersonenbezug": "none",
-      "dsvgoEntstellt": "none",
-      "dsvgoAnmerkung": ""
+      "dsgvoEntstellt": "none",
+      "dsgvoAnmerkung": ""
     }
   },
-  "dsvgoZeitpunkt": 45678765435678
+  "zeitpunkt": 45678765435678
 }

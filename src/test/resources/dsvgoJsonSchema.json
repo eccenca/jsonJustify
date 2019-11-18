@@ -1,16 +1,16 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://mindset.wifa.uni-leipzig.de/dsvgo/schema.json",
+  "$id": "https://mindset.wifa.uni-leipzig.de/dsgvo/schema.json",
   "type": "object",
-  "title": "The DSVGO Annotation Root Schema",
+  "title": "The DSGVO Annotation Root Schema",
+  "comment": "The root schema of DSGVO annotation.",
   "required": [
     "@id",
     "@vers",
     "datasetName",
-    "dsvgoRelevant",
-    "dsvgoAttribute",
-    "dsvgoZeitpunkt"
+    "dsgvoAttribute",
+    "zeitpunkt"
   ],
   "properties": {
     "@id": {
@@ -21,7 +21,8 @@
       "examples": [
         "datasetid"
       ],
-      "pattern": "[a-zA-Z0-9_-]+"
+      "pattern": "[a-zA-Z0-9_-]+",
+      "comment": "An id is an alphanumeric string to be used as identifier."
     },
     "@vers": {
       "$id": "#/properties/@vers",
@@ -31,7 +32,8 @@
       "examples": [
         "20191108"
       ],
-      "pattern": "[a-zA-Z0-9_-]+"
+      "pattern": "[a-zA-Z0-9_-]+",
+      "comment": "An id is an alphanumeric string to be used as a version indicator."
     },
     "@prev": {
       "$id": "#/properties/@prev",
@@ -41,7 +43,8 @@
       "examples": [
         "20191101"
       ],
-      "pattern": "[a-zA-Z0-9_-]+"
+      "pattern": "[a-zA-Z0-9_-]+",
+      "comment": "An id is an alphanumeric string to be used as a pointer to a previous version."
     },
     "datasetName": {
       "$id": "#/properties/datasetName",
@@ -50,50 +53,62 @@
       "default": "",
       "examples": [
         "Name of Dataset"
-      ]
+      ],
+      "comment": "The name of the dataset."
     },
-    "dsvgoRelevant": {
-      "$id": "#/properties/dsvgoRelevant",
-      "type": "boolean",
-      "title": "The Dsvgorelevant Schema",
-      "default": false
+    "datenBeschreibung": {
+      "$id": "#/properties/datenBeschreibung",
+      "type": "string",
+      "title": "The datenBeschreibung Schema",
+      "default": "",
+      "comment": "An optional, high-level description of the contained data."
     },
-    "dsvgoAttribute": {
-      "$id": "#/properties/dsvgoAttribute",
+    "dsgvoAttribute": {
+      "$id": "#/properties/dsgvoAttribute",
       "type": "object",
       "title": "The Dsvgoattribute Schema",
       "additionalProperties": {
-        "$id": "#/properties/dsvgoAttribute/properties",
+        "$id": "#/properties/dsgvoAttribute/properties",
         "type": "object",
         "title": "Attributannotations Schema",
         "default": null,
         "required": [
           "dsgvoPersonenbezug",
-          "dsvgoEntstellt"
+          "dsgvoEntstellt",
+          "dsgvoVerwendungszweck"
         ],
         "properties": {
           "dsgvoPersonenbezug": {
-            "$id": "#/properties/dsvgoAttribute/properties/dsgvoPersonenbezug",
+            "$id": "#/properties/dsgvoAttribute/properties/dsgvoPersonenbezug",
             "type": "string",
             "title": "The Dsgvopersonenbezug Schema",
             "default": "",
             "examples": [
               "personenbeziehbar"
             ],
-            "enum": [ "personenbeziehbar", "personenbezogen", "none" ]
+            "enum": [ "personenbeziehbar", "personenbezogen", "none" ],
+            "comment": "Indicating whether or not the property contains personal data."
           },
-          "dsvgoEntstellt": {
-            "$id": "#/properties/dsvgoAttribute/properties/dsvgoEntstellt",
+          "dsgvoEntstellt": {
+            "$id": "#/properties/dsgvoAttribute/properties/dsgvoEntstellt",
             "type": "string",
             "title": "The Dsvgoentstellt Schema",
             "default": "",
             "examples": [
               "pseudonymisiert"
             ],
-            "enum": [ "pseudonymisiert", "annonymisiert", "none" ]
+            "enum": [ "pseudonymisiert", "annonymisiert", "none" ],
+            "comment": "Indicates whether or not the data contained was obfuscated."
           },
-          "dsvgoAnmerkung": {
-            "$id": "#/properties/dsvgoAttribute/properties/dsvgoAnmerkung",
+          "dsgvoVerwendungszweck": {
+            "$id": "#/properties/dsgvoAttribute/properties/dsgvoVerwendungszweck",
+            "type": "string",
+            "title": "The dsgvoVerwendungszweck Schema",
+            "default": "",
+            "comment": "This attribute allows for the annotation of any purpose pertaining to the given attribute."
+          },
+          "dsgvoAnmerkung": {
+            "$id": "#/properties/dsgvoAttribute/properties/dsgvoAnmerkung",
             "type": "string",
             "title": "The Dsvgoanmerkung Schema",
             "default": ""
@@ -101,14 +116,15 @@
         }
       }
     },
-    "dsvgoZeitpunkt": {
-      "$id": "#/properties/dsvgoZeitpunkt",
+    "zeitpunkt": {
+      "$id": "#/properties/zeitpunkt",
       "type": "number",
       "title": "The Dsvgozeitpunkt Schema",
       "default": 0,
       "examples": [
         45678765435678
-      ]
+      ],
+      "comment": "The date and time of this annotation in milliseconds."
     }
   }
 }

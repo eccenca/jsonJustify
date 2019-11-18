@@ -9,6 +9,8 @@ import org.leadpony.justify.api.{JsonValidatingException, Problem, ProblemHandle
   */
 class ValidationProblemHandler(problemFunc: JsonValidatingException => Unit) extends ProblemHandler {
   override def handleProblems(problems: util.List[Problem]): Unit = {
-    problemFunc(new JsonValidatingException(problems))
+    val exception = new JsonValidatingException(problems)
+
+    problemFunc(exception)
   }
 }

@@ -3,23 +3,26 @@
   "@vers": "20191108",
   "@prev": "20191101",
   "datasetName": "Name of Dataset",
-  "dsvgoRelevant": true,
-  "dsvgoAttribute": {
+  "datenBeschreibung": "A description",
+  "dsgvoAttribute": {
     "attrName1": {
       "dsgvoPersonenbezug": "personenbeziehbar",
-      "dsvgoEntstellt": "pseudonymisiert",
-      "dsvgoAnmerkung": "Eine weitere Anmerkung."
+      "dsgvoEntstellt": "pseudonymisiert",
+      "dsgvoVerwendungszweck": "",
+      "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName2": {
       "dsgvoPersonenbezug": "personenbezogen",
-      "dsvgoEntstellt": "annonymisiert",
-      "dsvgoAnmerkung": "Eine weitere Anmerkung."
+      "dsgvoEntstellt": "annonymisiert",
+      "dsgvoVerwendungszweck": "",
+      "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName3": {
       "dsgvoPersonenbezug": "none",
-      "dsvgoEntstellt": "none",
-      "dsvgoAnmerkung": ""
+      "dsgvoEntstellt": "none",
+      "dsgvoVerwendungszweck": "Any purpose",
+      "dsgvoAnmerkung": ""
     }
   },
-  "dsvgoZeitpunkt": 45678765435678
+  "zeitpunkt": 45678765435678
 }
