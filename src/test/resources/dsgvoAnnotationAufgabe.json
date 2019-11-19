@@ -3,21 +3,24 @@
   "@vers": "20191108",
   "@prev": "20191101",
   "datasetName": "Name of Dataset",
-  "dsgvoRelevant": true,
+  "datenBeschreibung": "A description",
   "dsgvoAttribute": {
     "attrName1": {
       "dsgvoPersonenbezug": "personenbeziehbar",
-      "dsgvoEntstellt": "pseudonymisiert",
+      "dsgvoAufgabe": "pseudonymisieren",
+      "dsgvoVerwendungszweck": "",
       "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName2": {
       "dsgvoPersonenbezug": "personenbezogen",
-      "dsgvoEntstellt": "annonymisierte",
+      "dsgvoAufgabe": "annonymisieren",
+      "dsgvoVerwendungszweck": "",
       "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName3": {
       "dsgvoPersonenbezug": "none",
-      "dsgvoEntstellt": "none",
+      "dsgvoAufgabe": "none",
+      "dsgvoVerwendungszweck": "Any purpose",
       "dsgvoAnmerkung": ""
     }
   },

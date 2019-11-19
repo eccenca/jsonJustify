@@ -1,23 +1,26 @@
 {
   "@id": "datasetid",
-  "@vers": "2019.11.08",
-  "@prev": "2019.11.01",
+  "@vers": 20191108,
+  "@prev": "20191101",
   "datasetName": "Name of Dataset",
-  "dsgvoRelevant": true,
+  "datenBeschreibung": "A description",
   "dsgvoAttribute": {
     "attrName1": {
       "dsgvoPersonenbezug": "personenbeziehbar",
       "dsgvoEntstellt": "pseudonymisiert",
+      "dsgvoVerwendungszweck": "",
       "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName2": {
       "dsgvoPersonenbezug": "personenbezogen",
       "dsgvoEntstellt": "annonymisiert",
+      "dsgvoVerwendungszweck": "",
       "dsgvoAnmerkung": "Eine weitere Anmerkung."
     },
     "attrName3": {
       "dsgvoPersonenbezug": "none",
       "dsgvoEntstellt": "none",
+      "dsgvoVerwendungszweck": "Any purpose",
       "dsgvoAnmerkung": ""
     }
   },

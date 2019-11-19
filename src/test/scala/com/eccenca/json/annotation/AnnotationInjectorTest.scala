@@ -22,7 +22,7 @@ class AnnotationInjectorTest extends FlatSpec with MustMatchers with BeforeAndAf
   implicit val prefixes: Prefixes = Prefixes.empty
   private val execution = SparkExecution()
   private val workspaceDir = new File(Paths.get("").toAbsolutePath + "/src/test/resources")
-  private val schemaFile = FileResource(new File(workspaceDir, "dsvgoJsonSchema.json"))
+  private val schemaFile = FileResource(new File(workspaceDir, "dsgvoJsonSchema.json"))
   private val workspace = new Workspace(FileWorkspaceProvider(workspaceDir.getAbsolutePath), PerProjectFileRepository(workspaceDir.getAbsolutePath))
 
   private def getProject(name: String) = workspace.projects.find(p => p.name.toString() == name) match {

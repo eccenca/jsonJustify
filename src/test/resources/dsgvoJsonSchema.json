@@ -1,0 +1,182 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mindset.wifa.uni-leipzig.de/dsgvo/schema.json",
+  "type": "object",
+  "title": "The DSGVO Annotation Root Schema",
+  "comment": "The root schema of DSGVO annotation.",
+  "required": [
+    "@id",
+    "@vers",
+    "datasetName",
+    "dsgvoAttribute",
+    "zeitpunkt"
+  ],
+  "properties": {
+    "@id": {
+      "$id": "#/properties/@id",
+      "type": "string",
+      "title": "The @id Schema",
+      "default": "",
+      "examples": [
+        "datasetid"
+      ],
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "comment": "An id is an alphanumeric string to be used as identifier."
+    },
+    "@vers": {
+      "$id": "#/properties/@vers",
+      "type": "string",
+      "title": "The @vers Schema",
+      "default": "",
+      "examples": [
+        "20191108"
+      ],
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "comment": "An id is an alphanumeric string to be used as a version indicator."
+    },
+    "@prev": {
+      "$id": "#/properties/@prev",
+      "type": "string",
+      "title": "The @prev Schema",
+      "default": "",
+      "examples": [
+        "20191101"
+      ],
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "comment": "An id is an alphanumeric string to be used as a pointer to a previous version."
+    },
+    "datasetName": {
+      "$id": "#/properties/datasetName",
+      "type": "string",
+      "title": "The Datasetname Schema",
+      "default": "",
+      "examples": [
+        "Name of Dataset"
+      ],
+      "comment": "The name of the dataset."
+    },
+    "datenBeschreibung": {
+      "$id": "#/properties/datenBeschreibung",
+      "type": "string",
+      "title": "The datenBeschreibung Schema",
+      "default": "",
+      "comment": "An optional, high-level description of the contained data."
+    },
+    "dsgvoAttribute": {
+      "$id": "#/properties/dsgvoAttribute",
+      "type": "object",
+      "title": "The Dsvgoattribute Schema",
+      "oneOf":[
+        {"additionalProperties": {
+          "$id": "#/properties/dsgvoAttribute/properties",
+          "type": "object",
+          "title": "Attributannotations Schema",
+          "default": null,
+          "required": [
+            "dsgvoPersonenbezug",
+            "dsgvoEntstellt",
+            "dsgvoVerwendungszweck"
+          ],
+          "properties":
+          {
+            "dsgvoPersonenbezug": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoPersonenbezug",
+              "type": "string",
+              "title": "The Dsgvopersonenbezug Schema",
+              "default": "",
+              "examples": [
+                "personenbeziehbar"
+              ],
+              "enum": [ "personenbeziehbar", "personenbezogen", "none" ],
+              "comment": "Indicating whether or not the property contains personal data."
+            },
+            "dsgvoEntstellt": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoEntstellt",
+              "type": "string",
+              "title": "The Dsvgoentstellt Schema",
+              "default": "",
+              "examples": [
+                "pseudonymisiert"
+              ],
+              "enum": [ "pseudonymisiert", "annonymisiert", "none" ],
+              "comment": "Indicates whether or not the data contained was obfuscated. This attribute should never coexist with dsgvoAufgabe."
+            },
+            "dsgvoVerwendungszweck": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoVerwendungszweck",
+              "type": "string",
+              "title": "The dsgvoVerwendungszweck Schema",
+              "default": "",
+              "comment": "This attribute allows for the annotation of any purpose pertaining to the given attribute."
+            },
+            "dsgvoAnmerkung": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoAnmerkung",
+              "type": "string",
+              "title": "The Dsvgoanmerkung Schema",
+              "default": ""
+            }
+          }
+        }},
+        {"additionalProperties": {
+          "$id": "#/properties/dsgvoAttribute/properties",
+          "type": "object",
+          "title": "Attributannotations Schema",
+          "default": null,
+          "required": [
+            "dsgvoPersonenbezug",
+            "dsgvoAufgabe",
+            "dsgvoVerwendungszweck"
+          ],
+          "properties":
+          {
+            "dsgvoPersonenbezug": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoPersonenbezug",
+              "type": "string",
+              "title": "The Dsgvopersonenbezug Schema",
+              "default": "",
+              "examples": [
+                "personenbeziehbar"
+              ],
+              "enum": [ "personenbeziehbar", "personenbezogen", "none" ],
+              "comment": "Indicating whether or not the property contains personal data."
+            },
+            "dsgvoAufgabe": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoAufgabe",
+              "type": "string",
+              "title": "The Dsvgoentstellt Schema",
+              "default": "",
+              "examples": [
+                "pseudonymisieren"
+              ],
+              "enum": [ "pseudonymisieren", "annonymisieren", "none" ],
+              "comment": "Indicating an outstanding obfuscation task for the given column. This attribute should never coexist with dsgvoEntstellt."
+            },
+            "dsgvoVerwendungszweck": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoVerwendungszweck",
+              "type": "string",
+              "title": "The dsgvoVerwendungszweck Schema",
+              "default": "",
+              "comment": "This attribute allows for the annotation of any purpose pertaining to the given attribute."
+            },
+            "dsgvoAnmerkung": {
+              "$id": "#/properties/dsgvoAttribute/properties/dsgvoAnmerkung",
+              "type": "string",
+              "title": "The Dsvgoanmerkung Schema",
+              "default": ""
+            }
+          }
+        }}
+      ]
+    },
+    "zeitpunkt": {
+      "$id": "#/properties/zeitpunkt",
+      "type": "number",
+      "title": "The Dsvgozeitpunkt Schema",
+      "default": 0,
+      "examples": [
+        45678765435678
+      ],
+      "comment": "The date and time of this annotation in milliseconds."
+    }
+  }
+}

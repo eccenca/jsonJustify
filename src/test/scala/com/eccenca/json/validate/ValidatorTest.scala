@@ -10,45 +10,51 @@ import scala.collection.JavaConverters._
 
 class ValidatorTest extends FunSuite {
 
-  val schemaResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsvgoJsonSchema.json"))
+  val schemaResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoJsonSchema.json"))
   val validator = new Validator(schemaResource, new ValidationProblemHandler(throwProblemException))
   var foundProblems: Seq[Problem] = Seq()
 
   test("test validate with valid json") {
-    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsvgoAnnotation.json"))
+    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoAnnotation.json"))
+    validator.validate(testResource.inputStream)
+    checkForProblems()
+  }
+
+  test("test validate with valid json and dsgvoAufgabe") {
+    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoAnnotationAufgabe.json"))
     validator.validate(testResource.inputStream)
     checkForProblems()
   }
 
   test("test validate with typo") {
-    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsvgoAnnotationWithTypo.json"))
+    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoAnnotationWithTypo.json"))
     validator.validate(testResource.inputStream)
     intercept[TestFailedException](
-      checkForProblems()
+      checkForProblems(Some("oneOf"))
     )
   }
 
   test("test validate with missing required property") {
-    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsvgoAnnotationMissingRequired.json"))
+    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoAnnotationMissingRequired.json"))
     validator.validate(testResource.inputStream)
     intercept[TestFailedException](
-      checkForProblems()
+      checkForProblems(Some("required"))
     )
   }
 
   test("test validate with wrong data type") {
-    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsvgoAnnotationWrongType.json"))
+    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoAnnotationWrongType.json"))
     validator.validate(testResource.inputStream)
     intercept[TestFailedException](
-      checkForProblems()
+      checkForProblems(Some("type"))
     )
   }
 
-  ignore("test validate with violating pattern") {
-    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsvgoAnnotationPatternNotMtaching.json"))
+  test ("test validate with violating pattern") {
+    val testResource = FileResource(new File(new File("").getAbsoluteFile, "/src/test/resources/dsgvoAnnotationPatternNotMtaching.json"))
     validator.validate(testResource.inputStream)
     intercept[TestFailedException](
-      checkForProblems()
+      checkForProblems(Some("pattern"))
     )
   }
 
@@ -57,10 +63,18 @@ class ValidatorTest extends FunSuite {
     foundProblems = foundProblems ++ problem.getProblems.asScala
   }
 
-  def checkForProblems(): Unit ={
+  def checkForProblems(expectedProblemKey: Option[String] = None): Unit ={
+    if(foundProblems.isEmpty)
+      return
+
     val zw = foundProblems
     foundProblems = Seq()
-    if(zw.nonEmpty)
+    if(zw.nonEmpty && expectedProblemKey.nonEmpty && zw.head.getKeyword == expectedProblemKey.get){
       fail(new JsonValidatingException(zw.asJava))
+    }
+    else{
+      throw new IllegalStateException("The expected problem was not found as first problem: " + expectedProblemKey.getOrElse("") +
+        ". Actual problem was " + zw.headOption.map(_.getKeyword).getOrElse("no problem found"))
+    }
   }
 }
